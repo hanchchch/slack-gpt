@@ -3,10 +3,19 @@ version: '3'
 services:
   db:
     image: postgres
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: slack-gpt
       POSTGRES_USER: slack-gpt
       POSTGRES_DB: slack-gpt
 
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    environment:
+      DB_URL: postgres://slack-gpt:slack-gpt@db/slack-gpt
+      DB_SYNC: true
+      OPENAI_API_KEY: ${OPENAI_API_KEY:?err}
+      SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN:?err}
