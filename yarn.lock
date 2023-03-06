@@ -3671,6 +3671,15 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+nestjs-openai@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/nestjs-openai/-/nestjs-openai-0.0.1.tgz#78294bb094573e23d09f8ec12896a0c041379d65"
+  integrity sha512-5jv67itxAylCUI9X2B2jzYsStaTEjYiRJj6b+iCAKIwFx/SYhgXR/AHV36GBImyK69RxOIwS9yetqcGdx2y8Hg==
+  dependencies:
+    "@golevelup/nestjs-modules" "^0.6.0"
+    openai "^3.2.1"
+    rxjs "^7.x"
+
 nestjs-slack-listener@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nestjs-slack-listener/-/nestjs-slack-listener-1.0.5.tgz#62eaea12b61590a128306c13a9679eeb0c50a470"

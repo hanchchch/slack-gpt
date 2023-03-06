@@ -1,12 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { isAxiosError } from 'axios';
-import { MessageEvent } from 'nestjs-slack-listener';
+import {
+  InjectSlackClient,
+  MessageEvent,
+  SlackClient,
+} from 'nestjs-slack-listener';
 import { CreateChatCompletionRequest } from 'openai';
-import { OpenAIService } from 'src/openai/openai.service';
+import { OpenAIService } from 'nestjs-openai';
 
 @Injectable()
 export class ChatService {
-  constructor(private readonly openai: OpenAIService) {}
+  constructor(
+    private readonly openai: OpenAIService,
+    @InjectSlackClient() private readonly slack: SlackClient,
+  ) {}
 
   async completion(
     messages: CreateChatCompletionRequest['messages'],
@@ -32,9 +39,13 @@ export class ChatService {
 
   async chat(event: MessageEvent) {
     const { text } = event;
-    return this.completion([
+    const answer = await this.completion([
       { role: 'system', content: 'You are a helpful assistant.' },
       { role: 'user', content: text },
     ]);
+    await this.slack.chat.postMessage({
+      channel: event.channel,
+      text: answer,
+    });
   }
 }

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { EnvVars } from 'src/enviroment/env.interface';
-import { OpenAIModule } from 'src/openai/openai.module';
+import { OpenAIModule } from 'nestjs-openai';
 import { ChatController } from './chat.controller';
 import { ChatService } from './chat.service';
 
