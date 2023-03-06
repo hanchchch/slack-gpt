@@ -13,6 +13,7 @@ export class ChatController {
   constructor(private readonly chatService: ChatService) {}
   @SlackEventHandler('message')
   async onMessage({ event }: IncomingSlackEvent<MessageEvent>) {
-    return this.chatService.chat(event);
+    this.chatService.chat(event); // since inference takes pretty much of time, Slack will time out and try same request again
+    return 'ok';
   }
 }
